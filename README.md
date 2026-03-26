@@ -59,7 +59,7 @@ This project demonstrates an end‑to‑end Customer Support Intelligence Platfo
 - Tickets by customer segment (SMB, Mid‑Market, Enterprise)
 - MRR vs ticket volume relationship
 
-3️⃣ *Trends & Forecast:* his page focuses on historical trends and near-term forecasting of ticket demand. It helps anticipate workload fluctuations by analyzing rolling volumes, seasonality patterns, and projected ticket lifecycle behavior.
+3️⃣ *Trends & Forecast:* This page focuses on historical trends and near-term forecasting of ticket demand. It helps anticipate workload fluctuations by analyzing rolling volumes, seasonality patterns, and projected ticket lifecycle behavior.
 
 **Insights:**
 
