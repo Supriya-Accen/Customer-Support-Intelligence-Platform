@@ -1,0 +1,18 @@
+
+.create table ticket_events (event_time: datetime, event_type: string, ticket_id: int, customer_id: int, priority: string, channel: string)
+
+// Ingest sample data from the JSON lines file uploaded to your KQL DB
+// .ingest into table ticket_events (@"https://<OneLakeShortcutOrBlob>/ticket_events.jsonl")
+
+// Simple monitoring query
+let window = 1h;
+TicketVolume: ticket_events
+| where event_time > ago(window)
+| summarize count() by bin(event_time, 5m), channel;
+
+// Alert candidates: spikes per channel
+Spikes: ticket_events
+| where event_time > ago(24h)
+| summarize cnt=count() by channel, bin(event_time, 15m)
+| order by cnt desc
+| take 50;
