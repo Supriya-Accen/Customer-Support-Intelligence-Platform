@@ -1,0 +1,30 @@
+// Purpose: Detect abnormal ticket volume by channel vs baseline
+
+.create-or-alter function with (folder = "Power BI", docstring = "Spike Anamoly", skipvalidation = "true") Spike_Anamoly() {
+    let StartDate = datetime(2026-01-01);
+let EndDate   = datetime(2026-03-01);
+
+let Calendar =
+    range Day from StartDate to EndDate step 1d;
+
+let DailyCounts =
+    ['Ticket Event']
+    | where event_time between (StartDate .. EndDate)
+    | summarize DailyTickets = count()
+        by channel, Day = bin(event_time, 1d);
+
+let Baseline =
+    Calendar
+    | join kind=leftouter DailyCounts on Day
+    | extend DailyTickets = coalesce(DailyTickets, 0)
+    | summarize AvgDaily = avg(DailyTickets) by channel;
+
+Baseline
+| join (
+    ['Ticket Event']
+    | where event_time > EndDate
+    | summarize Tickets = count() by channel
+) on channel
+| extend SurgeRatio = round(Tickets / AvgDaily, 2)
+| order by SurgeRatio desc
+}
