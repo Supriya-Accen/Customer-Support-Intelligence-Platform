@@ -1,0 +1,10 @@
+
+// Purpose: Monitor hourly ticket inflow by channel
+// Used by the Live Operations (KQL) dashboard
+
+.create-or-alter function with (folder = "Power BI", docstring = "Ticket inflow over time", skipvalidation = "true") Ticket_inflow_overTime() {
+    ['Ticket Event']
+| where event_time >= datetime("2026-01-01")
+| summarize Tickets = count() by Timeslot=bin(event_time,1h), channel
+| order by Timeslot asc;
+}
