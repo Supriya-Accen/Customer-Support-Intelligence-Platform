@@ -137,7 +137,7 @@ The Gold tables are consumed by:
 
 Gold‑layer transformations are implemented in the following script:
 
-[Data_model/Bronze-Silver-Gold.ipynb](Data_model/Bronze-Silver-Gold.ipynb)
+[/Bronze-Silver-Gold.ipynb](/Bronze-Silver-Gold.ipynb)
 
 This script produces the star‑schema tables used across analytics and ML workflows.
 
