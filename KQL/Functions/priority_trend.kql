@@ -1,0 +1,9 @@
+
+// Purpose: Daily trend of ticket volume by priority
+
+.create-or-alter function with (folder = "Power BI", docstring = "Priority Trend", skipvalidation = "true") Priority_trend() {
+    ['Ticket Event']
+| where event_time >= datetime("2024-09-09")
+| summarize Tickets = count() by bin(event_time,1d), priority
+| order by event_time;
+}
