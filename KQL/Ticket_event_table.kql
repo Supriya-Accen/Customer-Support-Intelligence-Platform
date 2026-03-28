@@ -1,0 +1,12 @@
+
+// Ticket event schema definition
+// This table stores real-time ticket lifecycle events
+
+.create table ticket_events (
+    event_time: datetime,
+    event_type: string,
+    ticket_id: int,
+    customer_id: int,
+    priority: string,
+    channel: string
+)
