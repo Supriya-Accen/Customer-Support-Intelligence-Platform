@@ -29,6 +29,7 @@ This project demonstrates an end‑to‑end Customer Support Intelligence Platfo
 
 - Microsoft Fabric
 - OneLake & Lakehouse
+- PySpark
 - KQL (Real-Time Analytics)
 - Power BI
 - Fabric Data Warehouse
